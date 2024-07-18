@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>喵喵笨兔 - PHP 網頁編輯 MySQL 資料庫：修改資料</title>
+</head>
+<body>
+ <div>
+   <?php while($row=mysql_fetch_assoc($result)){ ?>
+   <form method="post" name="form">
+      <table align="center">
+        <tr>
+          <td>名稱：</td>
+          <td><input type="text" name="t_name" value="<?php echo htmlentities($row['t_name']); ?>" required></td>
+        </tr>
+        <tr>
+          <td>備註：</td>
+          <td><input type="text" name="t_note" value="<?php echo $row['t_note']; ?>"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><input type="reset" value="重設"><input type="submit" value="確定"></td>
+        </tr>
+      </table>
+      <input name="t_modify" type="hidden" value="yes"><? //隱藏欄位用來判斷是否送出,來做修改的動作 ?>
+      <input name="t_id" type="hidden" value="<?php echo $_GET['t_id']; //記錄篩選條件 ?>">
+   </form>
+   <?php } ?>
+</div>
+</body> 
+</html>
